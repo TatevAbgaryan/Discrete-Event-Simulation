@@ -5,13 +5,45 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.tatev.truckworkmodel.components.Truck;
+import com.example.tatev.truckworkmodel.jdbstemplates.TruckJDBSTemplate;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
+
 public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
+        TruckJDBSTemplate studentJDBCTemplate =
+                (TruckJDBSTemplate)context.getBean("TruckJDBCTemplate");
+
+//        System.out.println("------Records Creation--------" );
+//        studentJDBCTemplate.create("Zara", 11);
+//        studentJDBCTemplate.create("Nuha", 2);
+//        studentJDBCTemplate.create("Ayan", 15);
+
+        List<Truck> trucks = studentJDBCTemplate.listTrucks();
+        for (Truck record : trucks) {
+            System.out.print("ID : " + record.getTruckID() );
+            System.out.print(", RecoveryTime : " + record.getRecoveryTime() );
+            System.out.println(", StartTime : " + record.getStartTime());
+            System.out.println(", Speed : " + record.getSpeed());
+        }
+
+
+        System.out.println("----Listing Record with ID = 2 -----" );
+        Truck truck = studentJDBCTemplate.getTruck(2);
+        System.out.print("ID : " + truck.getTruckID() );
+        System.out.print(", RecoveryTime : " + truck.getRecoveryTime() );
+        System.out.println(", StartTime : " + truck.getStartTime());
+        System.out.println(", Speed : " + truck.getSpeed());
     }
 
     @Override

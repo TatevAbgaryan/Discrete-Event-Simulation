@@ -16,12 +16,11 @@ public interface TruckDao {
 
     public void create(int speed, Date startTime, Date recoveryTime, Date arrivalTime);
 
-    public void insert(Truck truck);
-
     public Truck getTruck(int id);
 
     public List<Truck> listTrucks();
 
     public void delete(Integer id);
+
 
 }
