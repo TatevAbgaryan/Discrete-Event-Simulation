@@ -6,7 +6,7 @@
     },
     {
       "source": "Saint Petersburg",
-      "target": "Paris"
+      "target": "Berlin"
     },
     {
       "source": "Saint Petersburg",
@@ -14,51 +14,52 @@
     },
     {
       "source": "Saint Petersburg",
-      "target": "Amsterdam"
+      "target": "Kiev"
     },
     {
-      "source": "Amsterdam",
+      "source": "Kiev",
       "target": "London"
     },
     {
       "source": "Saint Petersburg",
-      "target": "Tbilisi"
+      "target": "Volgodonsk"
     },
     {
       "source": "Yerevan",
-      "target": "Tbilisi"
+      "target": "Volgodonsk"
     },
     {
-      "source": "Tbilisi",
+      "source": "Volgodonsk",
       "target": "Roma"
     },
     {
-      "source": "Tbilisi",
-      "target": "Singapore"
+      "source": "Volgodonsk",
+      "target": "Stockholm"
     }
   ],
   "containers": [
     {
-      "startTime": "05/21/2016 17:00:00",
-      "initialTermianl": "Paris",
+      "startTime": "2016-05-21 17:00:00",
+      "initialTermianl": "Berlin",
       "quantity": "3",
-      "destination": "Amsterdam"
-    },
+      "destination": "Kiev"
+    }
+    ,
     {
-      "startTime": "05/21/2016 17:15:00",
+      "startTime": "2016-05-21 17:45:00",
       "initialTermianl": "Yerevan",
       "quantity": "1",
       "destination": "London"
     },
     {
-      "startTime": "06/21/2016 13:00:00",
-      "initialTermianl": "Paris",
+      "startTime": "2016-05-22 13:00:00",
+      "initialTermianl": "Berlin",
       "quantity": "2",
       "destination": "Roma"
     },
     {
-      "startTime": "06/21/2016 18:05:00",
-      "initialTermianl": "Tbilisi",
+      "startTime": "2016-05-23 18:05:00",
+      "initialTermianl": "Volgodonsk",
       "quantity": "4",
       "destination": "London"
     }

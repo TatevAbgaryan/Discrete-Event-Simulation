@@ -1,4 +1,4 @@
-package graduation.tatev.myapplication;
+package graduation.tatev.myapplication.Utils;
 
 import android.content.Context;
 import android.util.Log;
@@ -15,7 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
+import graduation.tatev.myapplication.ConnectionService;
 import graduation.tatev.myapplication.components.Container;
 import graduation.tatev.myapplication.components.GraphEdge;
 import graduation.tatev.myapplication.components.Terminal;
@@ -36,7 +38,7 @@ public class Utils {
             for (int i = 0; i < containers.length(); i++) {
                 JSONObject jsonobject = containers.getJSONObject(i);
                 BaseEvent event = new BaseEvent();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
                 Date date = simpleDateFormat.parse(jsonobject.getString("startTime"));
                 if (i == 0 || date.before(simulationStartDate))
                     simulationStartDate.setTime(date.getTime());

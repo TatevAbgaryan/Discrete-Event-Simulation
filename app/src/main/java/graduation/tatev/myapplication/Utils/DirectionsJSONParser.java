@@ -1,4 +1,4 @@
-package graduation.tatev.myapplication.components;
+package graduation.tatev.myapplication.Utils;
 
 import com.google.android.gms.maps.model.LatLng;
 

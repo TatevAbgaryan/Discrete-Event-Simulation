@@ -11,6 +11,7 @@ public class Container {
     private Terminal finalTerminal;
     private Date recoveryTime;
     private Date arrivalTime;
+    private Date startTime;
     private int size;
 
     public Container() {
@@ -20,7 +21,16 @@ public class Container {
         this.finalTerminal = container.getFinalTerminal();
         this.recoveryTime = container.getRecoveryTime();
         this.arrivalTime = container.getArrivalTime();
+        this.startTime = container.getStartTime();
         this.size = container.getSize();
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
     public Terminal getInitialTerminal() {
