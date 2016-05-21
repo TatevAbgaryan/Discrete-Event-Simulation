@@ -18,6 +18,8 @@ public interface TruckDao {
 
     public void delete(int id) throws SQLException;
 
+    public void deleteAll() throws SQLException;
+
     public List<Truck> getAllTrucks() throws SQLException;
 
 

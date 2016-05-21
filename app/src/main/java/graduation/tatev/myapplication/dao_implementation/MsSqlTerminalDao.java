@@ -33,7 +33,7 @@ public class MsSqlTerminalDao implements TerminalDao {
 
     @Override
     public Terminal read(int id) throws SQLException {
-        String sql = "SELECT * FROM Terminal WHERE id = ?;";
+        String sql = "SELECT * FROM Terminal WHERE TerminalID = ?;";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setInt(1, id);
         ResultSet rs = stm.executeQuery();

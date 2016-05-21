@@ -57,7 +57,6 @@ public class Container {
         this.size = size;
     }
 
-
     public Date getRecoveryTime() {
         return recoveryTime;
     }

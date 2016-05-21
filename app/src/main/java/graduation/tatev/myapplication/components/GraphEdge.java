@@ -1,31 +1,43 @@
 package graduation.tatev.myapplication.components;
 
-import java.util.Objects;
-
 public class GraphEdge {
 
-    private Terminal startPoint;
-    private Terminal endPoint;
+    private Terminal sourceTerminal;
+    private Terminal targetTerminal;
+    private int weight;
+
+    public GraphEdge() {
+
+    }
 
     public GraphEdge(Terminal t1, Terminal t2) {
-        startPoint = t1;
-        endPoint = t2;
+        sourceTerminal = t1;
+        targetTerminal = t2;
     }
 
-    public Terminal getStartPoint() {
-        return startPoint;
+
+    public int getWeight() {
+        return weight;
     }
 
-    public void setStartPoint(Terminal startPoint) {
-        this.startPoint = startPoint;
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
-    public Terminal getEndPoint() {
-        return endPoint;
+    public Terminal getSourceTerminal() {
+        return sourceTerminal;
     }
 
-    public void setEndPoint(Terminal endPoint) {
-        this.endPoint = endPoint;
+    public void setSourceTerminal(Terminal sourceTerminal) {
+        this.sourceTerminal = sourceTerminal;
+    }
+
+    public Terminal getTargetTerminal() {
+        return targetTerminal;
+    }
+
+    public void setTargetTerminal(Terminal targetTerminal) {
+        this.targetTerminal = targetTerminal;
     }
 
     @Override
@@ -34,18 +46,19 @@ public class GraphEdge {
         if (obj == this) return true;
         if (!(obj instanceof GraphEdge)) return false;
 
-        if (!this.startPoint.equals(((GraphEdge) obj).startPoint) && !this.startPoint.equals(((GraphEdge) obj).endPoint))
+        if (!this.sourceTerminal.equals(((GraphEdge) obj).sourceTerminal) && !this.sourceTerminal.equals(((GraphEdge) obj).targetTerminal))
             return false;
-        if (!this.endPoint.equals(((GraphEdge) obj).endPoint) && !this.endPoint.equals(((GraphEdge) obj).startPoint))
+        if (!this.targetTerminal.equals(((GraphEdge) obj).targetTerminal) && !this.targetTerminal.equals(((GraphEdge) obj).sourceTerminal))
             return false;
         return true;
     }
+
     @Override
-    public int hashCode(){
+    public int hashCode() {
         int result = 17;
-        result = 31 * result + endPoint.hashCode();
-        result = 31 * result + startPoint.hashCode();
+        result = 31 * result + targetTerminal.hashCode();
+        result = 31 * result + sourceTerminal.hashCode();
         return result;
-       // return Objects.hashCode(this);
+        // return Objects.hashCode(this);
     }
 }

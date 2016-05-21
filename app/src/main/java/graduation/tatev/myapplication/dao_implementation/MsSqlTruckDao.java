@@ -22,13 +22,12 @@ public class MsSqlTruckDao implements TruckDao {
 
     @Override
     public void insert(Truck truck) throws SQLException {
-        String sql = "INSERT INTO Truck VALUES(? ? ? ? ?)";
+        String sql = "INSERT INTO Truck VALUES(?, ?, ?, ?)";
         PreparedStatement stm = connection.prepareStatement(sql);
-        stm.setInt(1, truck.getTruckID());
-        stm.setDate(2, truck.getStartTime());
-        stm.setDate(3, truck.getRecoveryTime());
-        stm.setDate(4, truck.getArrivalTime());
-        stm.setInt(5, truck.getSpeed());
+        stm.setDate(1, truck.getStartTime());
+        stm.setDate(2, truck.getRecoveryTime());
+        stm.setDate(3, truck.getArrivalTime());
+        stm.setInt(4, truck.getSpeed());
         stm.executeUpdate();
     }
 
@@ -48,6 +47,8 @@ public class MsSqlTruckDao implements TruckDao {
         return truck;
     }
 
+
+
     @Override
     public void update(Truck truck) throws SQLException {
         String sql = "UPDATE Truck SET StartTime =  ?,  RecoveryTime =  ?, ArrivalTime =  ?,Speed =  ? WHERE TruckID = ?";
@@ -65,6 +66,13 @@ public class MsSqlTruckDao implements TruckDao {
         String sql = "DELETE FROM Truck WHERE id = ?";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setInt(1, id);
+        stm.executeUpdate();
+    }
+
+    @Override
+    public void deleteAll() throws SQLException {
+        String sql = "TRUNCATE TABLE Truck";
+        PreparedStatement stm = connection.prepareStatement(sql);
         stm.executeUpdate();
     }
 

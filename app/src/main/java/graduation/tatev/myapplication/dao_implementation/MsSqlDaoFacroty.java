@@ -1,6 +1,8 @@
 package graduation.tatev.myapplication.dao_implementation;
 
+import graduation.tatev.myapplication.dao.ContainerReadyEventDao;
 import graduation.tatev.myapplication.dao.DaoFactory;
+import graduation.tatev.myapplication.dao.GraphDao;
 import graduation.tatev.myapplication.dao.TerminalDao;
 import graduation.tatev.myapplication.dao.TruckDao;
 
@@ -36,4 +38,14 @@ public class MsSqlDaoFacroty implements DaoFactory {
         return new MsSqlTerminalDao(connection);
     }
 
-  }
+    @Override
+    public GraphDao getGraphDao(Connection connection) {
+        return new MsSqlGraphDao(connection);
+    }
+
+    @Override
+    public ContainerReadyEventDao getContainerReadyEventDao(Connection connection) {
+        return new MsSqlContainerReadyDao(connection);
+    }
+
+}

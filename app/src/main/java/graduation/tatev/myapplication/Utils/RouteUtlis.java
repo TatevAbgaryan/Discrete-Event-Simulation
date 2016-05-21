@@ -1,5 +1,6 @@
 package graduation.tatev.myapplication.Utils;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -18,9 +19,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import graduation.tatev.myapplication.MapsActivity;
 import graduation.tatev.myapplication.components.GraphEdge;
 
 /**
@@ -36,19 +35,28 @@ public class RouteUtlis {
     List<PolylineOptions> polylines;
     private List<GraphEdge> edges;
 
-    public void drawRoutes(List<GraphEdge> edges) {
+    public void drawRoutes(List<GraphEdge> edges,Context context) {
         polylines = new ArrayList<>();
         this.edges = edges;
-        List<String> urls = new ArrayList<>();
-        for (GraphEdge edge : edges) {
-            LatLng origin = new LatLng(edge.getStartPoint().getLatitude(), edge.getStartPoint().getLongitude());
-            LatLng dest = new LatLng(edge.getEndPoint().getLatitude(), edge.getEndPoint().getLongitude());
-            urls.add(getDirectionsUrl(origin, dest));
-        }
-        DownloadTask downloadTask = new DownloadTask();
+//        if(Utils.isGraphSame()){
+//            SharedPreferences prefs =
+//                    PreferenceManager.getDefaultSharedPreferences(context);
+//            Gson gson = new Gson();
+//            String json = prefs.getString("polyLines", "");
+//            ArrayList<PolylineOptions> polyLines = gson.fromJson(json,ArrayList.class);
+//            listener.onTaskCompleted(polyLines);
+//        }else {
+            List<String> urls = new ArrayList<>();
+            for (GraphEdge edge : edges) {
+                LatLng origin = new LatLng(edge.getSourceTerminal().getLatitude(), edge.getSourceTerminal().getLongitude());
+                LatLng dest = new LatLng(edge.getTargetTerminal().getLatitude(), edge.getTargetTerminal().getLongitude());
+                urls.add(getDirectionsUrl(origin, dest));
+            }
+            DownloadTask downloadTask = new DownloadTask();
 
-        // Start downloading json data from Google Directions API
-        downloadTask.execute(urls);
+            // Start downloading json data from Google Directions API
+            downloadTask.execute(urls);
+//        }
     }
 
 
@@ -208,7 +216,7 @@ public class RouteUtlis {
             listener.onTaskCompleted(polylines);
 
             // Drawing polyline in the Google Map for the i-th route
-            //MapsActivity.poliLines.put(edge, lineOptions);
+            //ActivityDes.poliLinesMap.put(edge, lineOptions);
         }
     }
 

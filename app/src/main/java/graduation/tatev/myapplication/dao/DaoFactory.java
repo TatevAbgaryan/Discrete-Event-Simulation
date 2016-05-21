@@ -14,4 +14,8 @@ public interface DaoFactory {
 
     public TruckDao getTruckDao(Connection connection);
 
+    public GraphDao getGraphDao(Connection connection);
+
+    public ContainerReadyEventDao getContainerReadyEventDao(Connection connection);
+
 }
