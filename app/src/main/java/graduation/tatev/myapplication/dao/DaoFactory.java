@@ -16,6 +16,6 @@ public interface DaoFactory {
 
     public GraphDao getGraphDao(Connection connection);
 
-    public ContainerReadyEventDao getContainerReadyEventDao(Connection connection);
+    public ContainerDao getContainerReadyEventDao(Connection connection);
 
 }

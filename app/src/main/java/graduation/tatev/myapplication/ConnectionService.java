@@ -3,7 +3,7 @@ package graduation.tatev.myapplication;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import graduation.tatev.myapplication.dao.ContainerReadyEventDao;
+import graduation.tatev.myapplication.dao.ContainerDao;
 import graduation.tatev.myapplication.dao.DaoFactory;
 import graduation.tatev.myapplication.dao.GraphDao;
 import graduation.tatev.myapplication.dao.TerminalDao;
@@ -21,7 +21,7 @@ public class ConnectionService {
     private static TerminalDao terminalDao = null;
     private static TruckDao truckDao = null;
     private static GraphDao graphDao = null;
-    private static ContainerReadyEventDao containerReadyEventDao = null;
+    private static ContainerDao containerDao = null;
 
     public static void initialize() {
         new AsyncTask<Void, Void, Void>() {
@@ -33,7 +33,7 @@ public class ConnectionService {
                     terminalDao = daoFactory.getTerminalDao(connection);
                     truckDao = daoFactory.getTruckDao(connection);
                     graphDao = daoFactory.getGraphDao(connection);
-                    containerReadyEventDao = daoFactory.getContainerReadyEventDao(connection);
+                    containerDao = daoFactory.getContainerReadyEventDao(connection);
 
                 } catch (Exception e) {
                     Log.d("excaptionOnConnecting", e.toString());
@@ -75,10 +75,10 @@ public class ConnectionService {
         return graphDao;
     }
 
-    public static ContainerReadyEventDao getContainerReadyEventDao() {
-        if (containerReadyEventDao == null)
+    public static ContainerDao getContainerDao() {
+        if (containerDao == null)
             throw new IllegalStateException("service not initialized");
-        return containerReadyEventDao;
+        return containerDao;
     }
 
 }

@@ -1,28 +1,21 @@
 package graduation.tatev.myapplication.Utils;
 
-import android.content.Context;
 import android.util.Log;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import graduation.tatev.myapplication.ConnectionService;
 import graduation.tatev.myapplication.components.Container;
 import graduation.tatev.myapplication.components.GraphEdge;
 import graduation.tatev.myapplication.components.Terminal;
 import graduation.tatev.myapplication.components.Truck;
-import graduation.tatev.myapplication.dao.ContainerReadyEventDao;
+import graduation.tatev.myapplication.dao.ContainerDao;
+import graduation.tatev.myapplication.dao.DaoFactory;
 import graduation.tatev.myapplication.dao.GraphDao;
 import graduation.tatev.myapplication.dao.TerminalDao;
 import graduation.tatev.myapplication.dao.TruckDao;
@@ -40,10 +33,19 @@ public class Utils {
 //        return isGraphSame;
 //    }
 
-    public static void getEventList(Context context, List<ContainerReadyEvent> eventList, Date simulationStartDate) {
-        ContainerReadyEventDao containerReadyEventDao = ConnectionService.getContainerReadyEventDao();
+    public static void getEventList(List<ContainerReadyEvent> eventList, Date simulationStartDate) {
+        ContainerDao containerDao = ConnectionService.getContainerDao();
         try {
-            eventList.addAll(containerReadyEventDao.getAllEvents());
+            List<Container> containers = containerDao.getContainers();
+            for (Container container : containers) {
+                ContainerReadyEvent containerReadyEvent = new ContainerReadyEvent();
+                containerReadyEvent.setStartTime(container.getReadyTime());
+                containerReadyEvent.setDestinationTerminal(container.getDestinationTerminal());
+                containerReadyEvent.setDepartureTerminal(container.getDepartureTerminal());
+                containerReadyEvent.setStartTime(container.getReadyTime());
+                containerReadyEvent.setConteiner(container);
+                eventList.add(containerReadyEvent);
+            }
             simulationStartDate.setTime(eventList.get(0).getStartTime().getTime());
             for (ContainerReadyEvent event : eventList) {
                 if (event.getStartTime().before(simulationStartDate))
@@ -102,6 +104,21 @@ public class Utils {
                 }
             }
         }
+    }
+
+    public static void updateContainer(final List<ContainerReadyEvent> events) {
+       final ContainerDao containerDao = ConnectionService.getContainerDao();
+        new Thread() {
+            public void run() {
+                try {
+                    for (ContainerReadyEvent event : events) {
+                        containerDao.update(event.getConteiner());
+                    }
+                } catch (SQLException e) {
+                    Log.d("exceptionUpdatContainer", e.toString());
+                }
+            }
+        }.start();
     }
 
     public static void saveTrucks(final List<Truck> trucks) {

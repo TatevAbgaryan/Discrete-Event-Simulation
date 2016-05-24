@@ -7,54 +7,54 @@ import java.util.Date;
  */
 public class Container {
 
-    private Terminal initialTerminal;
-    private Terminal finalTerminal;
+    private Terminal departureTerminal;
+    private Terminal destinationTerminal;
     private Date recoveryTime;
     private Date arrivalTime;
-    private Date startTime;
-    private int size;
+    private Date readyTime;
+    private int quantity;
 
     public Container() {
     }
     public Container(Container container){
-        this.initialTerminal = container.getInitialTerminal();
-        this.finalTerminal = container.getFinalTerminal();
+        this.departureTerminal = container.getDepartureTerminal();
+        this.destinationTerminal = container.getDestinationTerminal();
         this.recoveryTime = container.getRecoveryTime();
         this.arrivalTime = container.getArrivalTime();
-        this.startTime = container.getStartTime();
-        this.size = container.getSize();
+        this.readyTime = container.getReadyTime();
+        this.quantity = container.getQuantity();
     }
 
-    public Date getStartTime() {
-        return startTime;
+    public Date getReadyTime() {
+        return readyTime;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void setReadyTime(Date readyTime) {
+        this.readyTime = readyTime;
     }
 
-    public Terminal getInitialTerminal() {
-        return initialTerminal;
+    public Terminal getDepartureTerminal() {
+        return departureTerminal;
     }
 
-    public void setInitialTerminal(Terminal initialTerminal) {
-        this.initialTerminal = initialTerminal;
+    public void setDepartureTerminal(Terminal departureTerminal) {
+        this.departureTerminal = departureTerminal;
     }
 
-    public Terminal getFinalTerminal() {
-        return finalTerminal;
+    public Terminal getDestinationTerminal() {
+        return destinationTerminal;
     }
 
-    public void setFinalTerminal(Terminal finalTerminal) {
-        this.finalTerminal = finalTerminal;
+    public void setDestinationTerminal(Terminal destinationTerminal) {
+        this.destinationTerminal = destinationTerminal;
     }
 
-    public int getSize() {
-        return size;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public Date getRecoveryTime() {

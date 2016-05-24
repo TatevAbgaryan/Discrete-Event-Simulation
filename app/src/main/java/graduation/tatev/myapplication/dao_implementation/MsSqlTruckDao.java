@@ -22,12 +22,11 @@ public class MsSqlTruckDao implements TruckDao {
 
     @Override
     public void insert(Truck truck) throws SQLException {
-        String sql = "INSERT INTO Truck VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO Truck VALUES(?, ?, ?)";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setDate(1, truck.getStartTime());
-        stm.setDate(2, truck.getRecoveryTime());
-        stm.setDate(3, truck.getArrivalTime());
-        stm.setInt(4, truck.getSpeed());
+        stm.setDate(2, truck.getArrivalTime());
+        stm.setInt(3, truck.getSpeed());
         stm.executeUpdate();
     }
 
